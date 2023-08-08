@@ -13,7 +13,7 @@ function getComputerChoice() {
     }
 }
 
-function singleRound(playerSelection, computerSelection) {
+function playRound(playerSelection, computerSelection) {
     playerSelection = playerSelection.toLowerCase();
     computerSelection = computerSelection.toLowerCase();
 
@@ -36,4 +36,31 @@ function singleRound(playerSelection, computerSelection) {
     }
 }
 
-console.log(singleRound("paper", "ROCK"))
+
+function game(playRound) {
+    let playerScore = 0;
+    let computerScore = 0;
+    for (let i = 0; i < 5; i++) {
+        const playerSelection = "rock";
+        const computerSelection = getComputerChoice();
+        const result = playRound(playerSelection, computerSelection);
+        console.log(result);
+
+        if (result.includes("win")) {
+            playerScore++;
+        } else if (result.includes("lose")){
+            computerScore++; 
+        }
+    }
+    if (playerScore < computerScore) {
+        console.log("You lose the game");
+    } if (playerScore > computerScore) {
+        console.log("You win the game!");
+    } else if (playerScore === computerScore) {
+        console.log("The game was a tie");
+    }
+    console.log("The player final score is: " + playerScore);
+    console.log("The computer final score is: " + computerScore);
+}   
+
+game(playRound)
